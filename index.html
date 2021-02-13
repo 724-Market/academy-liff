@@ -60,9 +60,20 @@
     }
 
     function openWindow() {
+      liff.openWindow({
+        url: "https://line.me",
+        external: true
+      })
     }
 
     async function getFriendship() {
+      const frined = await liff.getFriendship()
+      document.getElementById("friendship").append(friend.friendFlag)
+      if (!friend.friendFlag) {
+        if (confirm("คุณยังไม่ได้เพิ่ม bot เป็นเพื่อนนะ")) {
+          window.location = "https://line.me/R/ti/p/@inhumba"
+        }
+      }
     }
 
     async function sendMsg() {
@@ -116,7 +127,7 @@
       getEnvironment()
       getUserProfile()
       getContext()
-      // getFriendship()
+      getFriendship()
       // createUniversalLink()
     }
     main()
