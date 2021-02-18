@@ -54,6 +54,7 @@
     }
 
     function closed() {
+      liff.closeWindow()
     }
 
     async function scanCode() {
@@ -89,12 +90,12 @@
             "type": "sticker",
             "packageId": "11538",
             "stickerId": "51626518"
-          },
-          {
-            "type": "image",
-            "originalContentUrl": "https://inhumba.com/wp-content/uploads/2019/02/wapuu-wordcamp-bangkok.jpg",
-            "previewImageUrl": "https://inhumba.com/wp-content/uploads/2019/02/wapuu-wordcamp-bangkok-300x158.jpg"
           }
+          // {
+          //   "type": "image",
+          //   "originalContentUrl": "https://inhumba.com/wp-content/uploads/2019/02/wapuu-wordcamp-bangkok.jpg",
+          //   "previewImageUrl": "https://inhumba.com/wp-content/uploads/2019/02/wapuu-wordcamp-bangkok-300x158.jpg"
+          // }
         ])
         alert("Message send")
       }
@@ -135,10 +136,15 @@
 
     async function main() {
       await liff.init({ liffId: "1655660464-OvpgwXLR" })
-      getEnvironment()
-      getUserProfile()
-      getContext()
-      getFriendship()
+      document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+      if (liff.isLoggedIn()) {
+        getEnvironment()
+        getUserProfile()
+        getContext()
+        getFriendship()
+      } else {
+        liff.login()
+      }
       // createUniversalLink()
     }
     main()
